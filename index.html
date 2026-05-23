@@ -2264,6 +2264,7 @@
   </div>
 
   <script>
+
     // ===== DATA =====
     const skills = [
       { name: 'Python', category: 'Language', icon: '🐍', color: '#3776AB', percent: 90 },
@@ -2529,22 +2530,15 @@
 
     // ===== FORM SUBMIT =====
     // Initialize EmailJS with your public key
-    emailjs.init('gHGNDRZKvPqv0mHJR');
+
 
     function handleSubmit() {
       const name = document.getElementById('contactName').value.trim();
       const email = document.getElementById('contactEmail').value.trim();
       const subject = document.getElementById('contactSubject').value.trim();
       const msg = document.getElementById('contactMessage').value.trim();
-
-      if (!name || !email || !msg) {
-        showToast('Please fill all required fields.');
-        return;
-      }
-
-      // Show sending state
-      showToast('Sending message... ⏳');
-
+      if (!name || !email || !msg) { showToast('Please fill all required fields.'); return; }
+      showToast('Sending... ⏳');
       emailjs.send('service_py6u11e', 'template_sbywujl', {
         from_name: name,
         reply_to: email,
@@ -2552,18 +2546,18 @@
         message: msg,
       })
         .then(() => {
-          showToast('Message sent successfully! 🚀');
+          showToast('Message sent! 🚀');
           document.getElementById('contactName').value = '';
           document.getElementById('contactEmail').value = '';
           document.getElementById('contactSubject').value = '';
           document.getElementById('contactMessage').value = '';
         })
         .catch(() => {
-          showToast('Something went wrong. Please try again.');
+          showToast('Something went wrong. Try again.');
         });
     }
 
-    // ===== INIT =====
+
     document.addEventListener('DOMContentLoaded', () => {
       renderSkills();
       renderProjects();
@@ -2581,8 +2575,11 @@
       }, 2200);
     });    
   </script>
-  
+
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    emailjs.init('gHGNDRZKvPqv0mHJR');
+  </script>
 
 </body>
 
